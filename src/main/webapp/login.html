@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script></head>
+    <body>
+
+        <header data-role="header" data-theme="b">
+            <a id="left" href="#menu" data-icon="bars" data-iconpos="notext">Menu</a>
+            <h1>Login page</h1>
+            <a id="right" href="/" data-icon="home" data-iconpos="notext">Home</a>
+        </header>
+        <article data-role="content" data-theme="b">
+            <form method="post">
+                <table>
+                    <tr>
+                        <th><label for="host">Host</label></th>
+                        <td><input id="host" name="host" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <th><label for="port">Port</label></th>
+                        <td><input id="port" name="port" type="number" /></td>
+                    </tr>
+                    <tr>
+                        <th><label for="username">User Name</label></th>
+                        <td><input id="username" name="username" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <th><label for="password">Password</label></th>
+                        <td><input id="password" name="password" type="password" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="reset" value="reset" /></td>
+                        <th><input type="submit" value="submit" /></th>
+                    </tr>
+                </table>
+            </form>
+        </article>
+        <footer style="text-align: center;" data-role="footer" data-theme="b">
+            Copyright &copy; NetIQ
+        </footer>
+    </body>
+</html>
