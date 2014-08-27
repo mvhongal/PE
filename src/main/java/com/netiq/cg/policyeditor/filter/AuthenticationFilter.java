@@ -32,11 +32,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Tamal Kanti Nath
  */
-@WebFilter(urlPatterns = {"/*"})
+@WebFilter(urlPatterns = {"*.html"})
 public class AuthenticationFilter implements Filter {
 
     private static final String LOGIN = "/login.html";
-    private static final String POST = "POST";
 
     @Override
     public void init(FilterConfig config) throws ServletException {
@@ -53,15 +52,12 @@ public class AuthenticationFilter implements Filter {
             FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         if (LOGIN.equals(req.getRequestURI())) {
-            if (POST.equals(req.getMethod())) {
-                return;
-            }
             chain.doFilter(req, response);
             return;
         }
         if (req.getSession().getAttribute("SAML_TOKEN") == null) {
             HttpServletResponse res = (HttpServletResponse) response;
-            res.sendRedirect("/login.html");
+            res.sendRedirect(LOGIN);
             return;
         }
         chain.doFilter(req, response);
