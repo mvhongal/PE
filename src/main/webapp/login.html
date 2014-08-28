@@ -15,6 +15,9 @@
             $scope.login = function() {
                 $scope.url = "https://" + $scope.host + ":" + $scope.port + "/SentinelAuthServices/auth/tokens";
                 $scope.credential = window.btoa($scope.username + ":" + $scope.password);
+                if ($scope.url.lastIndexOf(window.location.origin, 0) !== 0) {
+                	$scope.url = window.location.origin + "/ProxyServlet?url=" + $scope.url;
+                }
                 $http({
                 	url: $scope.url,
                 	method: "POST",

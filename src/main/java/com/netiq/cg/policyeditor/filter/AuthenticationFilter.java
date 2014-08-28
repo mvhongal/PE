@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Tamal Kanti Nath
  */
-@WebFilter(urlPatterns = {"*.html"})
+@WebFilter({"*.html", "*/"})
 public class AuthenticationFilter implements Filter {
 
     private static final String LOGIN = "/login.html";
