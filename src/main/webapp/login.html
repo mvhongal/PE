@@ -10,26 +10,28 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
         <script type="text/javascript">
         var loginModule = angular.module("loginModule", [])
-            .controller("loginController", ["$scope", "$http", loginController]);
-        function loginController($scope, $http) {
+            .controller("loginController", ["$scope", "$rootScope", "$http", loginController]);
+        function loginController($scope, $rootScope, $http) {
             $scope.login = function() {
                 $scope.url = "https://" + $scope.host + ":" + $scope.port + "/SentinelAuthServices/auth/tokens";
                 $scope.credential = window.btoa($scope.username + ":" + $scope.password);
                 if ($scope.url.lastIndexOf(window.location.origin, 0) !== 0) {
-                	$scope.url = window.location.origin + "/ProxyServlet?url=" + $scope.url;
+                    $scope.url = "/ProxyServlet?url=" + $scope.url;
                 }
                 $http({
-                	url: $scope.url,
-                	method: "POST",
-                	withCredentials: true,
-                	headers: {
-                	    'Authorization': 'Basic ' + $scope.credential
+                    url: $scope.url,
+                    method: "POST",
+                    headers: {
+                        'Authorization': 'Basic ' + $scope.credential
                     }
                 }).success(function(data, status, headers, config) {
-                    $scope.data = data;
-                    $scope.status = status;
-                    $scope.headers = headers;
-                    $scope.config = config;
+                    $rootScope.Token = data.Token;
+                    $rootScope.TokenDigest = data.TokenDigest;
+                    $http.defaults.headers.common.Authorization = "X-SAML " + data.Token;
+                    window.location = "/index.html";
+                }).error(function(data, status, headers, config) {
+                    $rootScope.Token = null;
+                    $rootScope.TokenDigest = null;
                 });
             };
         };
@@ -66,12 +68,8 @@
                     </tr>
                 </table>
             </form>
-            URL: {{url}}<br/>
-            Credential: {{credential}}<br/>
-            Data: {{data}}<br/>
-            Status: {{status}}<br/>
-            Headers: {{headers}}<br/>
-            Config: {{config}}
+            Token: {{Token}}<br/>
+            TokenDigest: {{TokenDigest}}
         </article>
         <footer style="text-align: center;" data-role="footer" data-theme="b">
             Copyright &copy; NetIQ
