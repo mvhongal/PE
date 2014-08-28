@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>Policy Editor</title>
-</head>
-<body>
-<h1>Policy Editor</h1>
-</body>
+<html data-ng-app="PolicyEditor">
+    <head>
+        <title>Policy Editor</title>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.min.js"></script>
+        <script src="content/script.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <article style="background-color: #2A2A2A; color: white;" data-ng-view>
+        </article>
+        <footer style="background-color: #1D1D1D; color: white; text-align: center;">
+            Copyright &copy; NetIQ
+        </footer>
+    </body>
 </html>

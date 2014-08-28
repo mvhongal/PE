@@ -1,0 +1,30 @@
+<h1 style="background-color: #1D1D1D; color: white; text-align: center; margin: 0em;">Login Page</h1>
+<form method="post" data-ng-submit="login()">
+    <table>
+        <tr>
+            <th><label for="host">Host</label></th>
+            <td><input id="host" name="host" required="required"
+                placeholder="Enter host" type="text" data-ng-model="host" /></td>
+        </tr>
+        <tr>
+            <th><label for="port">Port</label></th>
+            <td><input id="port" name="port" required="required"
+                placeholder="Enter Port" type="number" data-ng-model="port" /></td>
+        </tr>
+        <tr>
+            <th><label for="username">User Name</label></th>
+            <td><input id="username" name="username" required="required"
+                placeholder="Enter UserName" type="text" data-ng-model="username" /></td>
+        </tr>
+        <tr>
+            <th><label for="password">Password</label></th>
+            <td><input id="password" name="password" required="required"
+                placeholder="Enter Password" type="password"
+                data-ng-model="password" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <th><input type="submit" value="login" /></th>
+        </tr>
+    </table>
+</form>
