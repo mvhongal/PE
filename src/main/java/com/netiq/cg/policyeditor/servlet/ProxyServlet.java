@@ -102,7 +102,10 @@ public class ProxyServlet extends HttpServlet {
             String url = URLDecoder.decode(req.getParameter("url"), "UTF-8");
             String method = req.getMethod();
             if (!("POST".equals(method) || "PUT".equals(method))) {
-                url += "?" + getParameters(req);
+                String params = getParameters(req);
+                if (!params.isEmpty()) {
+                    url += "?" + params;
+                }
             }
             HttpURLConnection conn = getProxyConnection(url);
             // conn.setConnectTimeout(60000);

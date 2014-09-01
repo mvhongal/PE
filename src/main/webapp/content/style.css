@@ -19,9 +19,5 @@ input {
 	padding: 0.4em;
 	margin: 0.5em;
 	border-width: 1px;
-	width: 100%;
 	border-radius: 0.5em;
-}
-th {
-	text-align: right;
 }
