@@ -1,0 +1,27 @@
+body {
+	background-color: #2A2A2A;
+	color: white;
+	margin: 0em;
+	font-family: sans-serif;
+}
+header, footer {
+	background-color: #1D1D1D;
+	text-align: center;
+    padding: 0.3em;
+}
+h1, h2, h3 {
+	margin: 0em;
+}
+input {
+	color: inherit;
+    background-color: inherit;
+    border-color: black;
+	padding: 0.4em;
+	margin: 0.5em;
+	border-width: 1px;
+	width: 100%;
+	border-radius: 0.5em;
+}
+th {
+	text-align: right;
+}

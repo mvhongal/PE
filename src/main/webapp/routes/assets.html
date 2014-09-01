@@ -1,0 +1,19 @@
+<header>
+    <h3>Assets</h3>
+</header>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Display Name</th>
+    <th>DNS Name</th>
+    <th>Link</th>
+  </tr>
+  <tr data-ng-repeat="asset in assets">
+    <td>{{asset.id}}</td>
+    <td>{{asset.display-name}}</td>
+    <td>{{asset.dns-name}}</td>
+    <td>{{asset.link[0].uri}}</td>
+  </tr>
+</table>
+
+<p>Raw data: {{assets}}</p>
