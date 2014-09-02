@@ -50,9 +50,9 @@ function assetsController($scope, $rootScope, $http) {
 			url : $scope.url,
 			method : "GET",
 		}).success(function(data, status, headers, config) {
-			$scope.assets = data;
+			$scope.assets = camelCase(data);
 		}).error(function(data, status, headers, config) {
-			$scope.assets = data;
+			$scope.assets = camelCase(data);
 		});
 	};
 	init();
@@ -61,3 +61,27 @@ function assetsController($scope, $rootScope, $http) {
 PolicyEditor.controller('defaultController', function($scope) {
 	// Empty
 });
+
+function camelCase(obj) {
+	var array = [];
+	if (obj.constructor === array.constructor) {
+		for (var i = 0; i < obj.length; i++) {
+			array.push(camelCase(obj[i]));
+		}
+		return array;
+	}
+	var object = {};
+	var constructor = object.constructor;
+	if (obj.constructor !== constructor) {
+		return obj;
+	}
+	for (var key in obj) {
+		if (obj.hasOwnProperty(key)) {
+			var val = obj[key];
+			val = camelCase(val);
+			var camelCaseKey = key.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+			object[camelCaseKey] = val;
+		}
+	}
+	return object;
+}

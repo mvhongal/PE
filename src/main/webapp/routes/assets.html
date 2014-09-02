@@ -4,20 +4,20 @@
 <table>
   <tr>
     <th><a href="" data-ng-click="order = 'id'; reverse=!reverse">ID</a></th>
-    <th><a href="" data-ng-click="order = 'display-name'; reverse=!reverse">Display Name</a></th>
-    <th><a href="" data-ng-click="order = 'dns-name'; reverse=!reverse">DNS Name</a></th>
+    <th><a href="" data-ng-click="order = 'displayName'; reverse=!reverse">Display Name</a></th>
+    <th><a href="" data-ng-click="order = 'dnsDomain'; reverse=!reverse">DNS Domain</a></th>
     <th>Link</th>
   </tr>
   <tr data-ng-repeat="asset in assets | filter:searchText:strict | orderBy:order:reverse">
     <td>{{asset.id}}</td>
-    <td>{{asset["display-name"]}}</td>
-    <td>{{asset["dns-name"]}}</td>
+    <td>{{asset.displayName}}</td>
+    <td>{{asset.dnsDomain}}</td>
     <td>{{asset.link[0].uri}}</td>
   </tr>
   <tr>
     <td><input data-ng-model="searchText.id" placeholder="ID Search"></td>
-    <td><input data-ng-model="searchText['display-name']" placeholder="Display name search"></td>
-    <td><input data-ng-model="searchText['dns-name']" placeholder="DNS name search"></td>
+    <td><input data-ng-model="searchText.displayName" placeholder="Display name search"></td>
+    <td><input data-ng-model="searchText.dnsDomain" placeholder="DNS domain search"></td>
   </tr>
 </table>
 
