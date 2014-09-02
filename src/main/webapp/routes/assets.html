@@ -10,9 +10,8 @@
   </tr>
   <tr data-ng-repeat="asset in assets | filter:searchText:strict | orderBy:order:reverse">
     <td>{{asset.id}}</td>
-    <td>{{asset.displayName}}</td>
+    <td><a href="#assets/{{asset.id}}">{{asset.displayName}}</a></td>
     <td>{{asset.dnsDomain}}</td>
-    <td>{{asset.link[0].uri}}</td>
   </tr>
   <tr>
     <td><input data-ng-model="searchText.id" placeholder="ID Search"></td>
@@ -20,5 +19,3 @@
     <td><input data-ng-model="searchText.dnsDomain" placeholder="DNS domain search"></td>
   </tr>
 </table>
-
-<p>Raw data: {{assets}}</p>

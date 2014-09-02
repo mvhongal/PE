@@ -1,0 +1,50 @@
+<header>
+    <h3>Asset</h3>
+</header>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <td>{{asset.id}}</td>
+  </tr>
+  <tr>
+    <th>Display Name</th>
+    <td>{{asset.displayName}}</td>
+  </tr>
+  <tr>
+    <th>DNS Domain</th>
+    <td>{{asset.dnsDomain}}</td>
+  </tr>
+  <tr>
+    <th>O/S Type</th>
+    <td>{{asset.osType}}</td>
+  </tr>
+  <tr>
+    <th>Agent registration</th>
+    <td>{{asset.agentRegistration | date:'medium'}}</td>
+  </tr>
+  <tr>
+    <th>Last Policy Update</th>
+    <td>{{asset.lastPolicyUpdate | date:'medium'}}</td>
+  </tr>
+  <tr>
+    <th>Last Heartbeat</th>
+    <td>{{asset.lastHeartbeat | date:'medium'}}</td>
+  </tr>
+  <tr>
+    <th>Version</th>
+    <td>{{asset.version}}</td>
+  </tr>
+  <tr>
+    <th>IP addresses</th>
+    <td>{{asset.ipaddresses}}</td>
+  </tr>
+  <tr>
+    <th>Port</th>
+    <td>{{asset.port}}</td>
+  </tr>
+  <tr>
+    <th>Link</th>
+    <td>{{asset.link[0].uri}}</td>
+  </tr>
+</table>

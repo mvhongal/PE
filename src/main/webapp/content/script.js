@@ -6,6 +6,9 @@ PolicyEditor.config(function($routeProvider) {
 	}).when('/assets', {
 		controller : 'assetsController',
 		templateUrl : 'routes/assets.html'
+	}).when('/assets/:id', {
+		controller : 'assetController',
+		templateUrl : 'routes/asset.html'
 	}).when('/home', {
 		controller : 'defaultController',
 		templateUrl : 'routes/home.html'
@@ -53,6 +56,24 @@ function assetsController($scope, $rootScope, $http) {
 			$scope.assets = camelCase(data);
 		}).error(function(data, status, headers, config) {
 			$scope.assets = camelCase(data);
+		});
+	};
+	init();
+}
+
+function assetController($scope, $rootScope, $http, $routeParams) {
+	var init = function() {
+		$scope.url = $rootScope.baseURL + "/cg-api/assets/" + +$routeParams.id;
+		if ($scope.url.lastIndexOf(window.location.origin, 0) !== 0) {
+			$scope.url = "/ProxyServlet?url=" + $scope.url;
+		}
+		$http({
+			url : $scope.url,
+			method : "GET",
+		}).success(function(data, status, headers, config) {
+			$scope.asset = camelCase(data);
+		}).error(function(data, status, headers, config) {
+			$scope.asset = camelCase(data);
 		});
 	};
 	init();
