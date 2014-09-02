@@ -6,7 +6,6 @@
     <th><a href="" data-ng-click="order = 'id'; reverse=!reverse">ID</a></th>
     <th><a href="" data-ng-click="order = 'displayName'; reverse=!reverse">Display Name</a></th>
     <th><a href="" data-ng-click="order = 'dnsDomain'; reverse=!reverse">DNS Domain</a></th>
-    <th>Link</th>
   </tr>
   <tr data-ng-repeat="asset in assets | filter:searchText:strict | orderBy:order:reverse">
     <td>{{asset.id}}</td>

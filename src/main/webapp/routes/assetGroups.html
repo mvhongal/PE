@@ -1,0 +1,29 @@
+<header>
+    <h3>Asset Groups</h3>
+</header>
+
+<table>
+  <tr>
+    <th><a href="" data-ng-click="order = 'id'; reverse=!reverse">ID</a></th>
+    <th><a href="" data-ng-click="order = 'displayName'; reverse=!reverse">Display Name</a></th>
+    <th><a href="" data-ng-click="order = 'isDefault'; reverse=!reverse">Default</a></th>
+    <th><a href="" data-ng-click="order = 'isDynamic'; reverse=!reverse">Dynamic</a></th>
+    <th><a href="" data-ng-click="order = 'isHidden'; reverse=!reverse">Hidden</a></th>
+    <th>Member IDs</th>
+  </tr>
+  <tr data-ng-repeat="assetGroup in assetGroups | filter:searchText:strict | orderBy:order:reverse">
+    <td>{{assetGroup.id}}</td>
+    <td><a href="#assetGroups/{{assetGroup.id}}">{{assetGroup.displayName}}</a></td>
+    <td>{{assetGroup.isDefault}}</td>
+    <td>{{assetGroup.isDynamic}}</td>
+    <td>{{assetGroup.isHidden}}</td>
+    <td>{{assetGroup.memberIds}}</td>
+  </tr>
+  <tr>
+    <td><input data-ng-model="searchText.id" placeholder="ID Search"></td>
+    <td><input data-ng-model="searchText.displayName" placeholder="Display name search"></td>
+    <td><input data-ng-model="searchText.isDefault" type="checkbox"></td>
+    <td><input data-ng-model="searchText.isDynamic" type="checkbox"></td>
+    <td><input data-ng-model="searchText.isHidden" type="checkbox"></td>
+  </tr>
+</table>

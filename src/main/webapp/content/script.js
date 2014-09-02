@@ -3,6 +3,12 @@ PolicyEditor.config(function($routeProvider) {
 	$routeProvider.when('/login', {
 		controller : 'loginController',
 		templateUrl : 'routes/login.html'
+	}).when('/assetGroups', {
+		controller : 'assetGroupsController',
+		templateUrl : 'routes/assetGroups.html'
+	}).when('/assetGroups/:id', {
+		controller : 'assetGroupController',
+		templateUrl : 'routes/assetGroup.html'
 	}).when('/assets', {
 		controller : 'assetsController',
 		templateUrl : 'routes/assets.html'
@@ -54,8 +60,6 @@ function assetsController($scope, $rootScope, $http) {
 			method : "GET",
 		}).success(function(data, status, headers, config) {
 			$scope.assets = camelCase(data);
-		}).error(function(data, status, headers, config) {
-			$scope.assets = camelCase(data);
 		});
 	};
 	init();
@@ -72,8 +76,38 @@ function assetController($scope, $rootScope, $http, $routeParams) {
 			method : "GET",
 		}).success(function(data, status, headers, config) {
 			$scope.asset = camelCase(data);
-		}).error(function(data, status, headers, config) {
-			$scope.asset = camelCase(data);
+		});
+	};
+	init();
+}
+
+function assetGroupsController($scope, $rootScope, $http) {
+	var init = function() {
+		$scope.url = $rootScope.baseURL + "/cg-api/asset-groups";
+		if ($scope.url.lastIndexOf(window.location.origin, 0) !== 0) {
+			$scope.url = "/ProxyServlet?url=" + $scope.url;
+		}
+		$http({
+			url : $scope.url,
+			method : "GET",
+		}).success(function(data, status, headers, config) {
+			$scope.assetGroups = camelCase(data);
+		});
+	};
+	init();
+}
+
+function assetGroupController($scope, $rootScope, $http, $routeParams) {
+	var init = function() {
+		$scope.url = $rootScope.baseURL + "/cg-api/asset-groups/" + +$routeParams.id;
+		if ($scope.url.lastIndexOf(window.location.origin, 0) !== 0) {
+			$scope.url = "/ProxyServlet?url=" + $scope.url;
+		}
+		$http({
+			url : $scope.url,
+			method : "GET",
+		}).success(function(data, status, headers, config) {
+			$scope.assetGroup = camelCase(data);
 		});
 	};
 	init();
