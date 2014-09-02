@@ -21,3 +21,7 @@ input {
 	border-width: 1px;
 	border-radius: 0.5em;
 }
+
+a:visited, a:link {
+	color: blue;
+}

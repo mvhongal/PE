@@ -26,11 +26,11 @@ PolicyEditor.config(function($routeProvider) {
 function loginController($scope, $rootScope, $http) {
 	$scope.login = function() {
 		$rootScope.baseURL = "https://" + $scope.host + ":" + $scope.port;
+		if (window.location.origin !== $rootScope.baseURL) {
+			$rootScope.baseURL = "/ProxyServlet?url=" + $rootScope.baseURL;
+		}
 		$scope.url = $rootScope.baseURL + "/SentinelAuthServices/auth/tokens";
 		$scope.credential = window .btoa($scope.username + ":" + $scope.password);
-		if ($scope.url.lastIndexOf(window.location.origin, 0) !== 0) {
-			$scope.url = "/ProxyServlet?url=" + $scope.url;
-		}
 		$http({
 			url : $scope.url,
 			method : "POST",
@@ -51,14 +51,8 @@ function loginController($scope, $rootScope, $http) {
 
 function assetsController($scope, $rootScope, $http) {
 	var init = function() {
-		$scope.url = $rootScope.baseURL + "/cg-api/assets";
-		if ($scope.url.lastIndexOf(window.location.origin, 0) !== 0) {
-			$scope.url = "/ProxyServlet?url=" + $scope.url;
-		}
-		$http({
-			url : $scope.url,
-			method : "GET",
-		}).success(function(data, status, headers, config) {
+		$http.get($rootScope.baseURL + "/cg-api/assets")
+		.success(function(data) {
 			$scope.assets = camelCase(data);
 		});
 	};
@@ -67,14 +61,8 @@ function assetsController($scope, $rootScope, $http) {
 
 function assetController($scope, $rootScope, $http, $routeParams) {
 	var init = function() {
-		$scope.url = $rootScope.baseURL + "/cg-api/assets/" + +$routeParams.id;
-		if ($scope.url.lastIndexOf(window.location.origin, 0) !== 0) {
-			$scope.url = "/ProxyServlet?url=" + $scope.url;
-		}
-		$http({
-			url : $scope.url,
-			method : "GET",
-		}).success(function(data, status, headers, config) {
+		$http.get($rootScope.baseURL + "/cg-api/assets/" + $routeParams.id)
+		.success(function(data) {
 			$scope.asset = camelCase(data);
 		});
 	};
@@ -83,14 +71,8 @@ function assetController($scope, $rootScope, $http, $routeParams) {
 
 function assetGroupsController($scope, $rootScope, $http) {
 	var init = function() {
-		$scope.url = $rootScope.baseURL + "/cg-api/asset-groups";
-		if ($scope.url.lastIndexOf(window.location.origin, 0) !== 0) {
-			$scope.url = "/ProxyServlet?url=" + $scope.url;
-		}
-		$http({
-			url : $scope.url,
-			method : "GET",
-		}).success(function(data, status, headers, config) {
+		$http.get($rootScope.baseURL + "/cg-api/asset-groups")
+		.success(function(data) {
 			$scope.assetGroups = camelCase(data);
 		});
 	};
@@ -99,15 +81,13 @@ function assetGroupsController($scope, $rootScope, $http) {
 
 function assetGroupController($scope, $rootScope, $http, $routeParams) {
 	var init = function() {
-		$scope.url = $rootScope.baseURL + "/cg-api/asset-groups/" + +$routeParams.id;
-		if ($scope.url.lastIndexOf(window.location.origin, 0) !== 0) {
-			$scope.url = "/ProxyServlet?url=" + $scope.url;
-		}
-		$http({
-			url : $scope.url,
-			method : "GET",
-		}).success(function(data, status, headers, config) {
+		$http.get($rootScope.baseURL + "/cg-api/asset-groups/" + $routeParams.id)
+		.success(function(data) {
 			$scope.assetGroup = camelCase(data);
+		});
+		$http.get($rootScope.baseURL + "/cg-api/asset-groups/" + $routeParams.id + "/assets")
+		.success(function(data) {
+			$scope.assets = camelCase(data);
 		});
 	};
 	init();
