@@ -1,0 +1,48 @@
+<header>
+    <h3>Platforms</h3>
+</header>
+
+<table>
+  <tr>
+    <th><a href="" data-ng-click="order = 'id'; reverse=!reverse">ID</a></th>
+    <th><a href="" data-ng-click="order = 'name'; reverse=!reverse">Name</a></th>
+    <th><a href="" data-ng-click="order = 'vendor'; reverse=!reverse">Vendor</a></th>
+    <th><a href="" data-ng-click="order = 'quantity'; reverse=!reverse">Quantity</a></th>
+    <th><a href="" data-ng-click="order = 'units'; reverse=!reverse">Units</a></th>
+    <th><a href="" data-ng-click="order = 'period'; reverse=!reverse">Period</a></th>
+    <th><a href="" data-ng-click="order = 'owner'; reverse=!reverse">Owner</a></th>
+    <th><a href="" data-ng-click="order = 'features'; reverse=!reverse">Features</a></th>
+    <th><a href="" data-ng-click="order = 'expiration'; reverse=!reverse">Expiration</a></th>
+    <th><a href="" data-ng-click="order = 'isLicenseValid'; reverse=!reverse">License Valid</a></th>
+    <th><a href="" data-ng-click="order = 'licenseStatus'; reverse=!reverse">License Status</a></th>
+    <th><a href="" data-ng-click="order = 'numberOfPolicies'; reverse=!reverse">Number of Policies</a></th>
+  </tr>
+  <tr data-ng-repeat="platform in platforms | filter:searchText:strict | orderBy:order:reverse">
+    <td>{{platform.id}}</td>
+    <td><a href="#platforms/{{platform.id}}">{{platform.name}}</a></td>
+    <td>{{platform.vendor}}</td>
+    <td>{{platform.quantity}}</td>
+    <td>{{platform.units}}</td>
+    <td>{{platform.period}}</td>
+    <td>{{platform.owner}}</td>
+    <td>{{platform.features}}</td>
+    <td>{{platform.expiration | date}}</td>
+    <td>{{platform.isLicenseValid}}</td>
+    <td>{{platform.licenseStatus}}</td>
+    <td>{{platform.numberOfPolicies}}</td>
+  </tr>
+  <tr>
+    <td><input data-ng-model="searchText.id" placeholder="ID Search"></td>
+    <td><input data-ng-model="searchText.name" placeholder="Name search"></td>
+    <td><input data-ng-model="searchText.vendor" placeholder="vendor search"></td>
+    <td><input data-ng-model="searchText.quantity" placeholder="quantity search"></td>
+    <td><input data-ng-model="searchText.units" placeholder="units search"></td>
+    <td><input data-ng-model="searchText.period" placeholder="period search"></td>
+    <td><input data-ng-model="searchText.owner" placeholder="owner search"></td>
+    <td><input data-ng-model="searchText.features" placeholder="features search"></td>
+    <td><input data-ng-model="searchText.expiration" placeholder="expiration search"></td>
+    <td><input data-ng-model="searchText.isLicenseValid" placeholder="isLicenseValid search"></td>
+    <td><input data-ng-model="searchText.licenseStatus" placeholder="licenseStatus search"></td>
+    <td><input data-ng-model="searchText.numberOfPolicies" placeholder="numberOfPolicies search"></td>
+  </tr>
+</table>

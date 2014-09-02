@@ -1,0 +1,30 @@
+<header>
+    <h3>Container</h3>
+</header>
+
+<table>
+  <tr>
+    <th><a href="" data-ng-click="order = 'id'; reverse=!reverse">ID</a></th>
+    <th><a href="" data-ng-click="order = 'displayName'; reverse=!reverse">Display Name</a></th>
+    <th><a href="" data-ng-click="order = 'revision'; reverse=!reverse">Revision</a></th>
+    <th><a href="" data-ng-click="order = 'platformId'; reverse=!reverse">Platform ID</a></th>
+    <th><a href="" data-ng-click="order = 'containerId'; reverse=!reverse">Container ID</a></th>
+    <th><a href="" data-ng-click="order = 'enabledRevision'; reverse=!reverse">Enabled Revision</a></th>
+  </tr>
+  <tr data-ng-repeat="policy in container | filter:searchText:strict | orderBy:order:reverse">
+    <td>{{policy.id}}</td>
+    <td><a href="#platforms/{{policy.platformId}}/containers/{{policy.containerId}}/policies/{{policy.id}}">{{policy.displayName}}</a></td>
+    <td>{{policy.revision}}</td>
+    <td>{{policy.platformId}}</td>
+    <td>{{policy.containerId}}</td>
+    <td>{{policy.enabledRevision}}</td>
+  </tr>
+  <tr>
+    <td><input data-ng-model="searchText.id" placeholder="ID Search"></td>
+    <td><input data-ng-model="searchText.displayName" placeholder="Display Name search"></td>
+    <td><input data-ng-model="searchText.revision" placeholder="Revision search"></td>
+    <td><input data-ng-model="searchText.platformId" placeholder="Platform ID search"></td>
+    <td><input data-ng-model="searchText.containerId" placeholder="Container ID search"></td>
+    <td><input data-ng-model="searchText.enabledRevision" placeholder="Enabled Revision search"></td>
+  </tr>
+</table>

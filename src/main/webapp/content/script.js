@@ -15,6 +15,18 @@ PolicyEditor.config(function($routeProvider) {
 	}).when('/assets/:id', {
 		controller : 'assetController',
 		templateUrl : 'routes/asset.html'
+	}).when('/platforms', {
+		controller : 'platformsController',
+		templateUrl : 'routes/platforms.html'
+	}).when('/platforms/:id', {
+		controller : 'platformController',
+		templateUrl : 'routes/platform.html'
+	}).when('/platforms/:id/containers/:cid', {
+		controller : 'containerController',
+		templateUrl : 'routes/container.html'
+	}).when('/platforms/:id/containers/:cid/policies/:pid', {
+		controller : 'policyController',
+		templateUrl : 'routes/policy.html'
 	}).when('/home', {
 		controller : 'defaultController',
 		templateUrl : 'routes/home.html'
@@ -96,6 +108,46 @@ function assetGroupController($scope, $rootScope, $http, $routeParams) {
 					});
 				});
 			});
+		});
+	};
+	init();
+}
+
+function platformsController($scope, $rootScope, $http) {
+	var init = function() {
+		$http.get($rootScope.baseURL + "/cg-api/platforms")
+		.success(function(data) {
+			$scope.platforms = camelCase(data);
+		});
+	};
+	init();
+}
+
+function platformController($scope, $rootScope, $http, $routeParams) {
+	var init = function() {
+		$http.get($rootScope.baseURL + "/cg-api/platforms/" + $routeParams.id)
+		.success(function(data) {
+			$scope.platform = camelCase(data);
+		});
+	};
+	init();
+}
+
+function containerController($scope, $rootScope, $http, $routeParams) {
+	var init = function() {
+		$http.get($rootScope.baseURL + "/cg-api/platforms/" + $routeParams.id + "/containers/" + $routeParams.cid)
+		.success(function(data) {
+			$scope.container = camelCase(data);
+		});
+	};
+	init();
+}
+
+function policyController($scope, $rootScope, $http, $routeParams) {
+	var init = function() {
+		$http.get($rootScope.baseURL + "/cg-api/platforms/" + $routeParams.id + "/containers/" + $routeParams.cid + "/policies/" + $routeParams.pid)
+		.success(function(data) {
+			$scope.policy = camelCase(data);
 		});
 	};
 	init();
