@@ -2,7 +2,7 @@
     <h3>Asset Group</h3>
 </header>
 
-<table>
+<table border="1">
   <tr>
     <th>Display Name</th>
     <td>{{assetGroup.displayName}}</td>
@@ -42,5 +42,73 @@
     <td><input data-ng-model="searchText.id" placeholder="ID Search"></td>
     <td><input data-ng-model="searchText.displayName" placeholder="Display name search"></td>
     <td><input data-ng-model="searchText.dnsDomain" placeholder="DNS domain search"></td>
+  </tr>
+</table>
+
+<h3>Policy Set:</h3>
+<table>
+  <tr>
+    <th><a href="" data-ng-click="order = 'id'; reverse=!reverse">ID</a></th>
+    <th><a href="" data-ng-click="order = 'displayName'; reverse=!reverse">Display Name</a></th>
+    <th><a href="" data-ng-click="order = 'assignmentId'; reverse=!reverse">Assignment ID</a></th>
+    <th><a href="" data-ng-click="order = 'scheduleId'; reverse=!reverse">Schedule ID</a></th>
+    <th><a href="" data-ng-click="order = 'eventDestinationIds'; reverse=!reverse">Event Destination IDs</a></th>
+    <th><a href="" data-ng-click="order = 'policySetDescription'; reverse=!reverse">Policy Set Description</a></th>
+  </tr>
+  <tr data-ng-repeat="policySet in policySets | filter:searchText:strict | orderBy:order:reverse">
+    <td>{{policySet.id}}</td>
+    <td>{{policySet.displayName}}</td>
+    <td>{{policySet.assignmentId}}</td>
+    <td>{{policySet.scheduleId}}</td>
+    <td>{{policySet.eventDestinationIds}}</td>
+    <td>{{policySet.policySetDescription}}</td>
+  </tr>
+  <tr>
+    <td><input data-ng-model="searchText.id" placeholder="ID Search"></td>
+    <td><input data-ng-model="searchText.displayName" placeholder="Display name search"></td>
+    <td><input data-ng-model="searchText.assignmentId" placeholder="Assignment ID search"></td>
+    <td><input data-ng-model="searchText.scheduleId" placeholder="Schedule ID search"></td>
+    <td><input data-ng-model="searchText.eventDestinationIds" placeholder="Event Destination IDs search"></td>
+    <td><input data-ng-model="searchText.policySetDescription" placeholder="Policy Set Description search"></td>
+  </tr>
+</table>
+
+<h3>Policies:</h3>
+<table>
+  <tr>
+    <th><a href="" data-ng-click="order = 'id'; reverse=!reverse">ID</a></th>
+    <th><a href="" data-ng-click="order = 'displayName'; reverse=!reverse">Display Name</a></th>
+    <th><a href="" data-ng-click="order = 'assignmentId'; reverse=!reverse">Assignment ID</a></th>
+    <th><a href="" data-ng-click="order = 'scheduleId'; reverse=!reverse">Schedule ID</a></th>
+    <th><a href="" data-ng-click="order = 'eventDestinationIds'; reverse=!reverse">Event Destination IDs</a></th>
+    <th><a href="" data-ng-click="order = 'policyDescription'; reverse=!reverse">Policy Description</a></th>
+    <th><a href="" data-ng-click="order = 'platformId'; reverse=!reverse">Platform ID</a></th>
+    <th><a href="" data-ng-click="order = 'platformDisplayName'; reverse=!reverse">Platform Display Name</a></th>
+    <th><a href="" data-ng-click="order = 'inheritanceTrait'; reverse=!reverse">Inheritance Trait</a></th>
+    <th><a href="" data-ng-click="order = 'agentId'; reverse=!reverse">Agent ID</a></th>
+  </tr>
+  <tr data-ng-repeat="policy in policies">
+    <td>{{policy.id}}</td>
+    <td>{{policy.displayName}}</td>
+    <td>{{policy.assignmentId}}</td>
+    <td>{{policy.scheduleId}}</td>
+    <td>{{policy.eventDestinationIds}}</td>
+    <td>{{policy.policyDescription}}</td>
+    <td>{{policy.platformId}}</td>
+    <td>{{policy.platformDisplayName}}</td>
+    <td>{{policy.inheritanceTrait}}</td>
+    <td>{{policy.agentId}}</td>
+  </tr>
+  <tr>
+    <td><input data-ng-model="searchText.id" placeholder="ID Search"></td>
+    <td><input data-ng-model="searchText.displayName" placeholder="Display name search"></td>
+    <td><input data-ng-model="searchText.assignmentId" placeholder="Assignment ID search"></td>
+    <td><input data-ng-model="searchText.scheduleId" placeholder="Schedule ID search"></td>
+    <td><input data-ng-model="searchText.eventDestinationIds" placeholder="Event Destination IDs search"></td>
+    <td><input data-ng-model="searchText.policyDescription" placeholder="Policy description search"></td>
+    <td><input data-ng-model="searchText.platformId" placeholder="Platform ID search"></td>
+    <td><input data-ng-model="searchText.platformDisplayName" placeholder="Platform Name search"></td>
+    <td><input data-ng-model="searchText.inheritanceTrait" placeholder="Inheritance Trait search"></td>
+    <td><input data-ng-model="searchText.agentId" placeholder="Agent ID search"></td>
   </tr>
 </table>

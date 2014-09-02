@@ -84,10 +84,18 @@ function assetGroupController($scope, $rootScope, $http, $routeParams) {
 		$http.get($rootScope.baseURL + "/cg-api/asset-groups/" + $routeParams.id)
 		.success(function(data) {
 			$scope.assetGroup = camelCase(data);
-		});
-		$http.get($rootScope.baseURL + "/cg-api/asset-groups/" + $routeParams.id + "/assets")
-		.success(function(data) {
-			$scope.assets = camelCase(data);
+			$http.get($rootScope.baseURL + "/cg-api/asset-groups/" + $routeParams.id + "/assets")
+			.success(function(data1) {
+				$scope.assets = camelCase(data1);
+				$http.get($rootScope.baseURL + "/cg-api/asset-groups/" + $routeParams.id + "/policy-sets")
+				.success(function(data2) {
+					$scope.policySets = camelCase(data2);
+					$http.get($rootScope.baseURL + "/cg-api/asset-groups/" + $routeParams.id + "/effective-policies")
+					.success(function(data3) {
+						$scope.policies = camelCase(data3);
+					});
+				});
+			});
 		});
 	};
 	init();
